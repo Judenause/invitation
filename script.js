@@ -109,6 +109,71 @@
   }
 
   /* ═══════════════════════════════════════════
+     Background Music
+     ═══════════════════════════════════════════ */
+
+  let bgMusic = null;
+  let musicToggle = null;
+
+  function updateMusicButton(isAudible) {
+    if (!musicToggle) return;
+    musicToggle.classList.toggle('is-playing', isAudible);
+    musicToggle.setAttribute('aria-pressed', String(isAudible));
+    musicToggle.setAttribute('aria-label', isAudible ? '음악 일시정지' : '음악 재생');
+    musicToggle.textContent = isAudible ? 'Ⅱ' : '♪';
+  }
+
+  async function playMusic({ unmute = true } = {}) {
+    if (!bgMusic || !CONFIG.music?.enabled) return;
+    if (unmute) {
+      bgMusic.muted = false;
+    }
+    try {
+      await bgMusic.play();
+      updateMusicButton(!bgMusic.muted);
+    } catch {
+      updateMusicButton(false);
+    }
+  }
+
+  function pauseMusic() {
+    if (!bgMusic) return;
+    bgMusic.pause();
+    updateMusicButton(false);
+  }
+
+  function initMusic() {
+    bgMusic = $('#bgMusic');
+    musicToggle = $('#musicToggle');
+    if (!bgMusic || !musicToggle) return;
+
+    if (!CONFIG.music?.enabled || !CONFIG.music.src) {
+      musicToggle.style.display = 'none';
+      return;
+    }
+
+    bgMusic.src = CONFIG.music.src;
+    bgMusic.volume = 0.55;
+    bgMusic.muted = true;
+    bgMusic.autoplay = true;
+
+    // Browsers usually allow muted autoplay. The first real tap can then enable sound.
+    playMusic({ unmute: false });
+
+    musicToggle.addEventListener('click', () => {
+      if (bgMusic.paused || bgMusic.muted) {
+        playMusic();
+      } else {
+        pauseMusic();
+      }
+    });
+
+    bgMusic.addEventListener('play', () => updateMusicButton(!bgMusic.muted));
+    bgMusic.addEventListener('pause', () => updateMusicButton(false));
+    bgMusic.addEventListener('volumechange', () => updateMusicButton(!bgMusic.paused && !bgMusic.muted));
+  }
+
+  /* ═══════════════════════════════════════════
      Clipboard
      ═══════════════════════════════════════════ */
 
@@ -176,6 +241,7 @@
     btn.addEventListener('click', () => {
       curtain.classList.add('is-open');
       document.body.classList.remove('no-scroll');
+      playMusic();
       setTimeout(() => {
         curtain.classList.add('is-hidden');
       }, 500);
@@ -642,6 +708,7 @@
 
   async function init() {
     setMetaTags();
+    initMusic();
     initCurtain();
     initHero();
     initCountdown();

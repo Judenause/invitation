@@ -14,7 +14,11 @@
 
 const CONFIG = {
   // ── 초대장 열기 ──
-  useCurtain: false,  // 초대장 열기 화면 사용 여부 (true: 사용, false: 바로 본문 표시)
+  useCurtain: true,  // 초대장 열기 화면 사용 여부 (true: 사용, false: 바로 본문 표시)
+  music: {
+    enabled: true,
+    src: "music/FASSounds - Chill Summer [Thematic].mp3"
+  },
 
   // ── 메인 (히어로) ──
   groom: {

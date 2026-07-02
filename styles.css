@@ -162,6 +162,38 @@ a {
 }
 
 /* ═══════════════════════════════════════════
+   Music Toggle
+   ═══════════════════════════════════════════ */
+.music-toggle {
+  position: fixed;
+  right: calc(1rem + var(--safe-right));
+  bottom: calc(1rem + var(--safe-bottom));
+  z-index: 8500;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(51, 51, 51, 0.12);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--color-text);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform var(--transition), background var(--transition);
+}
+
+.music-toggle.is-playing {
+  background: rgba(51, 51, 51, 0.88);
+  color: var(--color-white);
+}
+
+.music-toggle:active {
+  transform: scale(0.94);
+}
+
+/* ═══════════════════════════════════════════
    Photo Modal
    ═══════════════════════════════════════════ */
 .photo-modal {
