@@ -311,14 +311,13 @@ a {
 
 .hero__photo-wrap {
   width: 100%;
-  overflow: hidden;
+  background: var(--color-white);
 }
 
 .hero__photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center 30%;
+  height: auto;
+  object-fit: contain;
 }
 
 .hero__content {
@@ -934,10 +933,6 @@ a {
   .hero__names {
     font-size: 1.75rem;
     letter-spacing: 8px;
-  }
-
-  .hero__photo {
-    aspect-ratio: 4 / 5;
   }
 
   .countdown__number {
