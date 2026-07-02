@@ -8,7 +8,7 @@
  *   images/hero/1.jpg      - 메인 사진 (1장, 필수)
  *   images/story/1.jpg, 2.jpg, ...  - 스토리 사진들 (순번, 자동 감지)
  *   images/gallery/1.jpg, 2.jpg, ... - 갤러리 사진들 (순번, 자동 감지)
- *   images/location/약도.jpg  - 약도/지도 이미지 (1장)
+ *   images/location/라뷔포레 약도_text.png  - 약도/지도 이미지 (1장)
  *   images/og/1.jpg        - 카카오톡 공유 썸네일 (1장)
  */
 
