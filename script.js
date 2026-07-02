@@ -115,22 +115,19 @@
   let bgMusic = null;
   let musicToggle = null;
 
-  function updateMusicButton(isAudible) {
+  function updateMusicButton(isPlaying) {
     if (!musicToggle) return;
-    musicToggle.classList.toggle('is-playing', isAudible);
-    musicToggle.setAttribute('aria-pressed', String(isAudible));
-    musicToggle.setAttribute('aria-label', isAudible ? '음악 일시정지' : '음악 재생');
-    musicToggle.textContent = isAudible ? 'Ⅱ' : '♪';
+    musicToggle.classList.toggle('is-playing', isPlaying);
+    musicToggle.setAttribute('aria-pressed', String(isPlaying));
+    musicToggle.setAttribute('aria-label', isPlaying ? '음악 일시정지' : '음악 재생');
+    musicToggle.textContent = isPlaying ? 'Ⅱ' : '♪';
   }
 
-  async function playMusic({ unmute = true } = {}) {
+  async function playMusic() {
     if (!bgMusic || !CONFIG.music?.enabled) return;
-    if (unmute) {
-      bgMusic.muted = false;
-    }
     try {
       await bgMusic.play();
-      updateMusicButton(!bgMusic.muted);
+      updateMusicButton(true);
     } catch {
       updateMusicButton(false);
     }
@@ -154,14 +151,9 @@
 
     bgMusic.src = CONFIG.music.src;
     bgMusic.volume = 0.55;
-    bgMusic.muted = true;
-    bgMusic.autoplay = true;
-
-    // Browsers usually allow muted autoplay. The first real tap can then enable sound.
-    playMusic({ unmute: false });
 
     musicToggle.addEventListener('click', () => {
-      if (bgMusic.paused || bgMusic.muted) {
+      if (bgMusic.paused) {
         playMusic();
       } else {
         pauseMusic();
@@ -170,7 +162,6 @@
 
     bgMusic.addEventListener('play', () => updateMusicButton(!bgMusic.muted));
     bgMusic.addEventListener('pause', () => updateMusicButton(false));
-    bgMusic.addEventListener('volumechange', () => updateMusicButton(!bgMusic.paused && !bgMusic.muted));
   }
 
   /* ═══════════════════════════════════════════
