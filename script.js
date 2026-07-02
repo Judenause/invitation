@@ -44,7 +44,27 @@
      Image Auto-Detection
      ═══════════════════════════════════════════ */
 
+  const IMAGE_FILES = {
+    story: ['1.jpg', '2.jpg'],
+    gallery: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      'THR_4173.JPG',
+      'THR_6674.JPG',
+      'THR_7668.JPG'
+    ]
+  };
+
+  function loadConfiguredImages(folder) {
+    return (IMAGE_FILES[folder] || []).map((fileName) => `images/${folder}/${fileName}`);
+  }
+
   function loadImagesFromFolder(folder, maxAttempts = 50) {
+    const configuredImages = loadConfiguredImages(folder);
+    if (configuredImages.length > 0) return Promise.resolve(configuredImages);
+
     return new Promise(resolve => {
         const images = [];
         let current = 1;
@@ -637,14 +657,13 @@
     initScrollAnimations();
 
     // Auto-detect images in parallel
-    const hasStorySection = Boolean($('#storyPhotos'));
     const [storyImages, galleryImages] = await Promise.all([
       loadImagesFromFolder('story'),
       loadImagesFromFolder('gallery')
     ]);
 
     initStory(storyImages);
-    initGallery(hasStorySection ? galleryImages : [...storyImages, ...galleryImages]);
+    initGallery(galleryImages);
   }
 
   if (document.readyState === 'loading') {
