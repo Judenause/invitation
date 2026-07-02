@@ -226,7 +226,7 @@
       return;
     }
 
-    namesEl.textContent = `${CONFIG.groom.name}  &  ${CONFIG.bride.name}`;
+    namesEl.textContent = `${CONFIG.groom.name} & ${CONFIG.bride.name}`;
     document.body.classList.add('no-scroll');
 
     btn.addEventListener('click', () => {
