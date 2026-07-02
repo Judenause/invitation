@@ -110,6 +110,8 @@
 
   function setMetaTags() {
     const m = CONFIG.meta;
+    const pageUrl = 'https://judenause.github.io/invitation/';
+    const ogImageUrl = `${pageUrl}images/og/1.jpg`;
     document.title = m.title;
     const setMeta = (attr, val, content) => {
       const el = document.querySelector(`meta[${attr}="${val}"]`);
@@ -117,7 +119,12 @@
     };
     setMeta('property', 'og:title', m.title);
     setMeta('property', 'og:description', m.description);
-    setMeta('property', 'og:image', 'images/og/1.jpg');
+    setMeta('property', 'og:url', pageUrl);
+    setMeta('property', 'og:image', ogImageUrl);
+    setMeta('property', 'og:image:secure_url', ogImageUrl);
+    setMeta('name', 'twitter:title', m.title);
+    setMeta('name', 'twitter:description', m.description);
+    setMeta('name', 'twitter:image', ogImageUrl);
     setMeta('name', 'description', m.description);
   }
 
