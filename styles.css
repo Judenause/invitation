@@ -419,19 +419,32 @@ a {
 }
 
 .greeting__parents .parent-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(8.5rem, auto) 3.75rem auto;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  column-gap: 0.75rem;
 }
 
-.greeting__parents .parent-dot {
+.greeting__parents .parent-names {
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.greeting__parents .parent-name-dot {
   color: var(--color-text-light);
-  font-size: 0.375rem;
+}
+
+.greeting__parents .parent-relation {
+  justify-self: center;
+  color: var(--color-text-light);
+  white-space: nowrap;
 }
 
 .greeting__parents .child-name {
+  justify-self: start;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .greeting__parents .deceased::before {
