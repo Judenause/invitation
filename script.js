@@ -139,7 +139,7 @@
   function setMetaTags() {
     const m = CONFIG.meta;
     const pageUrl = 'https://judenause.github.io/invitation/';
-    const ogImageUrl = `${pageUrl}images/og/thumbnail-safe-20260702.jpg`;
+    const ogImageUrl = `${pageUrl}images/og/thumbnail-headsafe-20260702.jpg`;
     document.title = m.title;
     const setMeta = (attr, val, content) => {
       const el = document.querySelector(`meta[${attr}="${val}"]`);
