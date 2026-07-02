@@ -32,6 +32,14 @@
     return new Date(`${CONFIG.wedding.date}T${CONFIG.wedding.time}:00`);
   }
 
+  function formatCalendarDateTime(dateStr, timeStr, addHours = 0) {
+    const [year, month, day] = dateStr.split('-');
+    const [hour, minute] = timeStr.split(':').map(Number);
+    const adjusted = new Date(Number(year), Number(month) - 1, Number(day), hour + addHours, minute);
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${adjusted.getFullYear()}${pad(adjusted.getMonth() + 1)}${pad(adjusted.getDate())}T${pad(adjusted.getHours())}${pad(adjusted.getMinutes())}00`;
+  }
+
   /* ═══════════════════════════════════════════
      Image Auto-Detection
      ═══════════════════════════════════════════ */
@@ -246,8 +254,10 @@
     const year = dt.getFullYear();
     const month = dt.getMonth();
     const weddingDay = dt.getDate();
+    const timezone = 'Asia/Seoul';
 
     const grid = $('#calendarGrid');
+    $('#calendarEventTime').textContent = formatDate(CONFIG.wedding.date, CONFIG.wedding.time);
 
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'];
@@ -288,11 +298,12 @@
 
     grid.appendChild(daysContainer);
 
-    // Google Calendar link
-    const startDate = dt.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-    const endDt = new Date(dt.getTime() + 2 * 60 * 60 * 1000);
-    const endDate = endDt.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-    const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CONFIG.groom.name + ' ♥ ' + CONFIG.bride.name + ' 결혼식')}&dates=${startDate}/${endDate}&location=${encodeURIComponent(CONFIG.wedding.venue + ' ' + CONFIG.wedding.address)}&details=${encodeURIComponent('결혼식에 초대합니다.')}`;
+    // Calendar links use explicit Seoul-local time so apps do not reinterpret noon.
+    const startDate = formatCalendarDateTime(CONFIG.wedding.date, CONFIG.wedding.time);
+    const endDate = formatCalendarDateTime(CONFIG.wedding.date, CONFIG.wedding.time, 2);
+    const eventTitle = `${CONFIG.groom.name} ♥ ${CONFIG.bride.name} 결혼식`;
+    const eventLocation = `${CONFIG.wedding.venue} ${CONFIG.wedding.hall} ${CONFIG.wedding.address}`;
+    const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${startDate}/${endDate}&ctz=${encodeURIComponent(timezone)}&location=${encodeURIComponent(eventLocation)}&details=${encodeURIComponent('결혼식에 초대합니다.')}`;
     $('#googleCalBtn').href = gcalUrl;
 
     // ICS download (Apple Calendar)
@@ -301,11 +312,12 @@
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
         'PRODID:-//Wedding//Invitation//KO',
+        `X-WR-TIMEZONE:${timezone}`,
         'BEGIN:VEVENT',
-        `DTSTART:${startDate}`,
-        `DTEND:${endDate}`,
-        `SUMMARY:${CONFIG.groom.name} ♥ ${CONFIG.bride.name} 결혼식`,
-        `LOCATION:${CONFIG.wedding.venue} ${CONFIG.wedding.address}`,
+        `DTSTART;TZID=${timezone}:${startDate}`,
+        `DTEND;TZID=${timezone}:${endDate}`,
+        `SUMMARY:${eventTitle}`,
+        `LOCATION:${eventLocation}`,
         'DESCRIPTION:결혼식에 초대합니다.',
         'END:VEVENT',
         'END:VCALENDAR'

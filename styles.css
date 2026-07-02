@@ -660,6 +660,14 @@ a {
   border-radius: 50%;
 }
 
+.calendar__event-time {
+  font-size: 0.9375rem;
+  font-weight: 300;
+  color: var(--color-text);
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-lg);
+}
+
 .calendar-actions {
   display: flex;
   gap: var(--spacing-sm);
