@@ -2,5 +2,8 @@
 Thumbs.db
 *.log
 .env
+node_modules/
+package-lock.json
+package.json
 *.Zone.Identifier
 *:Zone.Identifier
