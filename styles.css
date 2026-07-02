@@ -567,12 +567,13 @@ a {
 .location__map {
   margin-bottom: var(--spacing-lg);
   overflow: hidden;
+  background: var(--color-white);
 }
 
 .location__map-img {
   width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .location__links {
