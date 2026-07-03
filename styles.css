@@ -331,7 +331,9 @@ a {
    Main Content
    ═══════════════════════════════════════════ */
 .main-content {
+  width: 100%;
   max-width: 100%;
+  margin: 0 auto;
   overflow: hidden;
 }
 
@@ -351,6 +353,7 @@ a {
   font-size: 1.125rem;
   font-weight: 400;
   letter-spacing: 2px;
+  text-indent: 2px;
   margin-bottom: var(--spacing-sm);
   color: var(--color-text);
 }
@@ -390,6 +393,7 @@ a {
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 6px;
+  text-indent: 6px;
   margin-bottom: var(--spacing-md);
   color: var(--color-text);
 }
@@ -421,6 +425,7 @@ a {
   font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 2px;
+  text-indent: 2px;
   color: var(--color-text-light);
   margin-bottom: var(--spacing-sm);
 }
@@ -994,6 +999,7 @@ a {
   .hero__names {
     font-size: 1.75rem;
     letter-spacing: 8px;
+    text-indent: 8px;
   }
 
   .countdown__number {
