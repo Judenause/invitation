@@ -5,7 +5,7 @@
  * 이미지는 설정이 필요 없습니다. 아래 폴더에 순번 파일명으로 넣으면 자동 감지됩니다.
  *
  * 이미지 폴더 구조 (파일명 규칙):
- *   images/hero/Our wedding day.png      - 메인 사진 (1장, 필수)
+ *   images/hero/we_getting.png           - 메인 사진 (1장, 필수)
  *   images/story/1.jpg, 2.jpg, ...  - 스토리 사진들 (순번, 자동 감지)
  *   images/gallery/1.jpg, 2.jpg, ... - 갤러리 사진들 (순번, 자동 감지)
  *   images/location/라뷔포레 약도_text.png  - 약도/지도 이미지 (1장)
@@ -74,7 +74,7 @@ const CONFIG = {
     ],
     bride: [
       { role: "신부", name: "성하린", bank: "신한은행", number: "110-530-266500" },
-      { role: "아버지", name: "성호을", bank: "국민은행", number: "612-502-01495404" },
+      { role: "아버지", name: "성호을", bank: "국민은행", number: "612502-01-495404" },
       { role: "어머니", name: "조인영", bank: "전북은행", number: "505-210-421102" }
     ]
   },
