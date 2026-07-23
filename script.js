@@ -47,13 +47,14 @@
   const IMAGE_FILES = {
     story: ['1.jpg', '2.jpg'],
     gallery: [
-      '1.jpg',
-      '2.jpg',
-      '3.jpg',
-      '4.jpg',
-      'THR_4173.JPG',
-      'THR_6674.JPG',
-      'THR_7668.JPG'
+      'THR_3803.JPG',
+      'THR_4173_(2).JPG',
+      'THR_6040.JPG',
+      'THR_6655.JPG',
+      'THR_6674_(2).JPG',
+      'THR_7066_(2)_20260515_180838.JPG',
+      'THR_7609.JPG',
+      'THR_7668_(2).JPG'
     ]
   };
 
