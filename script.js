@@ -229,6 +229,7 @@
     btn.addEventListener('click', () => {
       curtain.classList.add('is-open');
       document.body.classList.remove('no-scroll');
+      playMusic();
       setTimeout(() => {
         curtain.classList.add('is-hidden');
       }, 500);
@@ -452,7 +453,8 @@
       const div = document.createElement('div');
       div.className = 'gallery__item animate-item';
       div.setAttribute('data-animate', 'fade-up');
-      div.innerHTML = `<img src="${src}" alt="갤러리 사진 ${i + 1}" loading="lazy">`;
+      const thumbnailSrc = src.replace('images/gallery/', 'images/gallery/thumbs/').replace(/\.JPG$/i, '.webp');
+      div.innerHTML = `<img src="${thumbnailSrc}" alt="갤러리 사진 ${i + 1}" loading="lazy" decoding="async">`;
       div.addEventListener('click', () => openPhotoModal(galleryImages, i));
       grid.appendChild(div);
     });
