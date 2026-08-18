@@ -47,14 +47,10 @@
   const IMAGE_FILES = {
     story: ['1.jpg', '2.jpg'],
     gallery: [
-      'THR_3803.JPG',
-      'THR_4173_(2).JPG',
-      'THR_6040.JPG',
-      'THR_6655.JPG',
-      'THR_6674_(2).JPG',
-      'THR_7066_(2)_20260515_180838.JPG',
-      'THR_7609.JPG',
-      'THR_7668_(2).JPG'
+      '1.JPG', '2.JPG', '3.JPG', '4.JPG', '5.JPG',
+      '6.JPG', '7.JPG', '8.JPG', '9.JPG', '10.JPG',
+      '11.JPG', '12.JPG', '13.JPG', '14.JPG', '15.JPG',
+      '16.JPG', '17.JPG', '18.JPG', '19.JPG', '20.JPG'
     ]
   };
 
@@ -233,7 +229,6 @@
     btn.addEventListener('click', () => {
       curtain.classList.add('is-open');
       document.body.classList.remove('no-scroll');
-      playMusic();
       setTimeout(() => {
         curtain.classList.add('is-hidden');
       }, 500);
@@ -245,7 +240,7 @@
      ═══════════════════════════════════════════ */
 
   function initHero() {
-    $('#heroPhoto').src = 'images/hero/we_getting.png';
+    $('#heroPhoto').src = 'images/hero/main.jpg';
     $('#heroNames').textContent = `${CONFIG.groom.name}  ·  ${CONFIG.bride.name}`;
     $('#heroDate').textContent = formatDate(CONFIG.wedding.date, CONFIG.wedding.time);
     $('#heroVenue').textContent = CONFIG.wedding.venue;
