@@ -479,6 +479,17 @@
     document.body.classList.add('no-scroll');
   }
 
+  function getModalImageSrc(src) {
+    if (!src.startsWith('images/gallery/')) return src;
+    return src.replace('images/gallery/', 'images/gallery/large/').replace(/\.JPG$/i, '.webp');
+  }
+
+  function preloadModalImage(index) {
+    if (index < 0 || index >= modalImages.length) return;
+    const image = new Image();
+    image.src = getModalImageSrc(modalImages[index]);
+  }
+
   function closePhotoModal() {
     $('#photoModal').classList.remove('is-open');
     document.body.classList.remove('no-scroll');
@@ -486,7 +497,9 @@
 
   function showModalImage() {
     const img = $('#modalImg');
-    img.src = modalImages[modalIndex];
+    img.src = getModalImageSrc(modalImages[modalIndex]);
+    preloadModalImage(modalIndex - 1);
+    preloadModalImage(modalIndex + 1);
     $('#modalCounter').textContent = `${modalIndex + 1} / ${modalImages.length}`;
     $('#modalPrev').style.display = modalIndex > 0 ? '' : 'none';
     $('#modalNext').style.display = modalIndex < modalImages.length - 1 ? '' : 'none';
