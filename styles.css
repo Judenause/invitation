@@ -659,6 +659,25 @@ a {
   justify-content: center;
 }
 
+.location__parking {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--color-white);
+  font-size: 0.8125rem;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.location__parking-title {
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.location__parking strong {
+  font-weight: 500;
+}
+
 /* ═══════════════════════════════════════════
    Calendar Section
    ═══════════════════════════════════════════ */
